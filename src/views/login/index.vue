@@ -23,9 +23,9 @@
             <div class="top">
                 <div class="header">
                     <img alt="logo" class="logo" src="">
-                    <span class="title">jasdjasljdalsdjlaslkdaksdasdasd</span>
+                    <span class="title">Mind Notes Online</span>
                 </div>
-                <div class="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+                <div class="desc">Mind Notes Online 随时随地记录笔记，灵感时刻与你同行</div>
             </div>
             <div class="login">
                 <a-form @submit="onSubmit" :form="form">
@@ -39,8 +39,8 @@
                                 <a-input
                                     autocomplete="autocomplete"
                                     size="large"
-                                    placeholder="admin"
-                                    v-decorator="['name', {rules: [{ required: true, message: '请输入账户名', whitespace: true}]}]"
+                                    placeholder="用户名"
+                                    v-decorator="['userName', {rules: [{ required: true, message: '请输入账户名', whitespace: true}]}]"
                                 >
                                     <a-icon slot="prefix" type="user"/>
                                 </a-input>
@@ -48,7 +48,7 @@
                             <a-form-item>
                                 <a-input
                                     size="large"
-                                    placeholder="888888"
+                                    placeholder="密码"
                                     autocomplete="autocomplete"
                                     type="password"
                                     v-decorator="['password', {rules: [{ required: true, message: '请输入密码', whitespace: true}]}]"
@@ -97,7 +97,7 @@ export default {
                 if (!err) {
                     // 调取登录接口
                     loginByUsername(values.userName, values.password).then(res => {
-                        if (res.code == '200') {
+                        if (res.code === '200') {
                             this.$store.dispatch('LoginByUsername', res.data).then(() => {
                                 this.$message.success('登录成功')
                                 this.$router.push('/dashboard')
